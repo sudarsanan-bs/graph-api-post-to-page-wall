@@ -8,7 +8,7 @@ All images used belong to original copyright owners, used here only for demonstr
 
 Run instructions
 ================
-Run post_to_fb.py by executing the following command in your operating system's console/erminal.
+Run post_to_fb.py by executing the following command in your operating system's console/terminal.
 
 
 python post_to_fb.py
