@@ -9,33 +9,23 @@ import json
 try:
         logging.basicConfig(filename='\PATH\TO\post_to_fb.log', level=logging.INFO)
 
-        json_arr=[]
-
-        ## config_params.json##
-        #######################
-        # {
-        #     "fb_access_token": "EAACxxxxcBABlZBOYnSHxxxxxyyyyyyxxxxyyy2op2kfxXhmfbtiAMHFXBOkZCexxxxyyyyxyyx7kRYLnR1rYhg7JtTjn236cxJUO1bm2WJC7Vcxxxyyyyyyzzzzzzz91lqcNmDjEbhdAw8TlUZBT3Wo9jnsjndsd6asdjhXXXXX77777YYYYYYjewewek6YYYYYZZZZ",
-        #     "caption_for_your_post": "Me and ma dawgs! 8)",
-        #     "fb_page_id": "212345678910111",
-        #     "fb_album_id": "012437922426691.0000000000"
-        # }
-
+        json_dict=[]
+        
+        #Open config_params.json in read mode
         with open('\PATH\TO\config_params.json','r') as input_file:
             logging.info("Parsing config file")
             input_json_string=input_file.read().replace('\n','')
-            json_arr=json.loads(input_json_string)
+            json_dict=json.loads(input_json_string) #Saving into a dictionary
 
-        fb_token = json_arr['fb_access_token']
-        caption  = json_arr['caption_for_your_post']
-        page_id  = json_arr['fb_page_id']
-        album_id = json_arr['fb_album_id']
-
-        photo=open('\PATH\TO\photo.jpg','rb')
+        photo=open('\PATH\TO\photo.jpg','rb') #Read the photo to be posted (in binary mode)
         
-        graph=facebook.GraphAPI(access_token=fb_token,version='2.10')
-
-        graph_output_post_id=graph.put_photo(image=photo,album_path=page_id+'/photos',message=caption)['id']
-        fb_share_link="https://facebook.com/"+page_id+"/photos/a."+album_id+"."+page_id+"/%d/"%(int(graph_output_post_id))
+        #Authenticate GraphAPI access using the 'page-access token' for the page
+        graph=facebook.GraphAPI(access_token=json_dict['fb_access_token'],version='2.10')
+        
+        #Upload the photo and caption to create a new Facebook post into the page; in the process, retrieve the post ID for future reference
+        graph_output_post_id=graph.put_photo(image=photo,album_path=json_dict['fb_page_id']+'/photos',message=json_dict['caption_for_your_post'])['id']
+        #Cosntruct the share link for this post
+        fb_share_link="https://facebook.com/"+json_dict['fb_page_id']+"/photos/a."+json_dict['fb_album_id']+"."+json_dict['fb_page_id']+"/%d/"%(int(graph_output_post_id))
 
         logging.info("The post has been successfully made. Use the following link to share it with your friends: "+fb_share_link)
 
