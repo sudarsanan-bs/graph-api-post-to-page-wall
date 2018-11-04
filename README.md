@@ -6,6 +6,12 @@ We will deal with a simple post consisting of a picture and a caption.
 
 All images used belong to original copyright owners, used here only for demonstrational purposes. No commercial use intended.
 
+Run instructions
+================
+Run post_to_fb.py by executing the following command in your operating system's console/erminal.
+
+
+python post_to_fb.py
 
 Sample output
 =============
