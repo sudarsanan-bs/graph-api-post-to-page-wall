@@ -7,4 +7,6 @@ We will deal with a simple post consisting of a picture and a caption.
 
 The post has been successfully made. Use the following link to share it with your friends: https://facebook.com/212345678910111/photos/a.012437922426691.0000000000.212345678910111/0000000000/
 
+[Sample output]
+
 ******************
