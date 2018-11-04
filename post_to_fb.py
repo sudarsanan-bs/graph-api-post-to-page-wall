@@ -6,6 +6,10 @@ import traceback
 import os.path
 import json
 
+#***************************************
+# Author: Sudarsanan B S
+#***************************************
+
 try:
         logging.basicConfig(filename='\PATH\TO\post_to_fb.log', level=logging.INFO)
 
